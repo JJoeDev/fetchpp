@@ -1,0 +1,9 @@
+.cache/
+.ninja_deps
+.ninja_log
+CMakeCache.*
+CMakeFiles/
+bin/
+build.*
+cmake_install.*
+
