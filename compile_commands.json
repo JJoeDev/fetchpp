@@ -1,6 +1,12 @@
 [
 {
   "directory": "/home/jjoe/dev/cpp/fetchpp",
+  "command": "/usr/bin/c++ -I/home/jjoe/dev/cpp/fetchpp/src/assets -Wall -Wpedantic -Wextra -Wconversion -std=gnu++17 -o CMakeFiles/fetchpp.dir/src/fetcher.cpp.o -c /home/jjoe/dev/cpp/fetchpp/src/fetcher.cpp",
+  "file": "/home/jjoe/dev/cpp/fetchpp/src/fetcher.cpp",
+  "output": "CMakeFiles/fetchpp.dir/src/fetcher.cpp.o"
+},
+{
+  "directory": "/home/jjoe/dev/cpp/fetchpp",
   "command": "/usr/bin/c++ -I/home/jjoe/dev/cpp/fetchpp/src/assets -Wall -Wpedantic -Wextra -Wconversion -std=gnu++17 -o CMakeFiles/fetchpp.dir/src/main.cpp.o -c /home/jjoe/dev/cpp/fetchpp/src/main.cpp",
   "file": "/home/jjoe/dev/cpp/fetchpp/src/main.cpp",
   "output": "CMakeFiles/fetchpp.dir/src/main.cpp.o"

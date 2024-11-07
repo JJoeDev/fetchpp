@@ -3,12 +3,16 @@
 #include <getopt.h>
 #include <string>
 
+#include "fetcher.hpp"
 #include "assets.hpp"
 #include "logos-builtin.hpp"
 
 int main(int argc, char** argv){
-    std::string optstr;
+    std::string logo;
     int option = 0;
+
+    Fetcher fetcher;
+    fetcher.FetchData();
 
     while((option = getopt(argc, argv, ":hvl:")) != -1){
         switch(option){
@@ -20,7 +24,7 @@ int main(int argc, char** argv){
                 return 0;
             case 'l':
                 if(auto it{LogosStr.find(optarg)}; it != LogosStr.end()){
-                    std::cout << it->second << '\n';
+                    logo = it->second;
                 }
                 break;
             case ':':
@@ -34,6 +38,8 @@ int main(int argc, char** argv){
                 return 0;
         }
     }
+
+    fetcher.Draw(logo);
 
     return 0;
 }
