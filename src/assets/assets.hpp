@@ -11,15 +11,21 @@ inline const char* HelpMessageStr = R"""(
     -h | Print the current help message
     -v | Print the current version of fetchpp
 
-    -l | Print one of the built in logos for fetchpp (-l void)
-    -- void
-    -- arch
-    -- nixos
-    -- gentoo
-    -- solus
-    -- lfs
-    -- debian
-    -- fedora
+    -l | Print one of the built-in logos for fetchpp.
+         Use the following syntax to choose a logo:
+
+         fetchpp -l <logo_name>
+
+         Available Logos:
+
+         -- void
+         -- arch
+         -- nixos
+         -- gentoo
+         -- solus
+         -- lfs
+         -- debian
+         -- fedora
 
 )""";
 
