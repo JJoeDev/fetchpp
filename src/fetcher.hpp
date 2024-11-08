@@ -34,17 +34,12 @@ public:
     void Draw(const std::string& logo);
 
 private:
-    void GetOSName();
-    void GetHostname();
     std::string ExecCmd(const std::string& cmd);
+    std::string FindLineInFile(const std::string& path, const std::string& target = "");
 
     void RemoveWhitespace(std::string* str);
 
-    std::string m_OS;
-    std::string m_ID;
-    std::string m_hostname;
-    std::string m_packages;
-    std::string m_cpu;
+    std::string m_infoBuf{};
 };
 
 #endif

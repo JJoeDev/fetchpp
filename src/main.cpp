@@ -26,6 +26,9 @@ int main(int argc, char** argv){
                 if(auto it{LogosStr.find(optarg)}; it != LogosStr.end()){
                     logo = it->second;
                 }
+                else{
+                    logo = "\nLogo does not exist...\n";
+                }
                 break;
             case ':':
                 std::cout << "Option requires a value\n";
