@@ -4,6 +4,7 @@
 #include <string>
 
 #include "fetcher.hpp"
+#include "logoLoader.hpp"
 #include "assets.hpp"
 #include "logos-builtin.hpp"
 
@@ -14,7 +15,7 @@ int main(int argc, char** argv){
     Fetcher fetcher;
     fetcher.FetchData();
 
-    while((option = getopt(argc, argv, ":hvl:")) != -1){
+    while((option = getopt(argc, argv, ":hvl:p:")) != -1){
         switch(option){
             case 'h':
                 std::cout << HelpMessageStr;
@@ -29,6 +30,9 @@ int main(int argc, char** argv){
                 else{
                     logo = "\nLogo does not exist...\n";
                 }
+                break;
+            case 'p':
+                logo = LoadCustomLogo(optarg);
                 break;
             case ':':
                 std::cout << "Option requires a value\n";

@@ -1,4 +1,5 @@
 #include "fetcher.hpp"
+#include "assets.hpp"
 
 #include <algorithm>
 #include <array>
@@ -27,32 +28,51 @@ void Fetcher::FetchData(){
         }
     }
 
-    std::string packages = ExecCmd("xbps-query -l | wc -l");
-    std::string hostname = linuxInfo.nodename;
-    std::string kernel = linuxInfo.release;
-    
-    RemoveWhitespace(&packages);
+    std::string ID = FindLineInFile("/etc/os-release", "ID");
+    pos = ID.find('=');
+    if(pos != std::string::npos){
+        ID = ID.substr(pos + 1);
+        if(ID.front() == '"' && ID.back() == '"'){
+            ID = ID.substr(1, ID.size() - 2);
+        }
+    }
+
+    std::string pkgsCmd;
+    std::string pkgCount("Packages: ");
+    auto it = packageCmd.find(ID);
+    if(it != packageCmd.end()){
+        pkgsCmd = it->second;
+    }
+    else{
+        pkgsCmd = "";
+    }
+
+    std::string hostname("Hostname: ");
+    std::string kernel("Kernel: ");
 
     os.insert(0, "OS: ");
-    packages.insert(0, "Packages: ");
-    hostname.insert(0, "Hostname: ");
-    kernel.insert(0, "Kernel: ");
+    hostname.append(linuxInfo.nodename);
+    kernel.append(linuxInfo.release);
 
     m_infoBuf = os + NL +
-                packages + NL +
                 hostname + NL +
                 kernel + NL;
+
+    if(!pkgsCmd.empty()){
+        pkgCount.append(ExecCmd(pkgsCmd));
+        m_infoBuf.append(pkgCount + NL);
+    }
 }
 
 void Fetcher::Draw(const std::string& logo){
-    std::cout << ansiColor.at(Color::GREEN) << logo << ansiColor.at(Color::DEFAULT) << '\n';
-    std::cout << m_infoBuf << '\n';
+    std::cout << ansiColor.at(Color::GREEN) << logo << ansiColor.at(Color::DEFAULT) << NL;
+    std::cout << m_infoBuf << NL;
 }
 
 std::string Fetcher::FindLineInFile(const std::string& path, const std::string& target){
     std::ifstream file(path);
     if(!file){
-        std::cerr << "Could not opent file: " << path << '\n';
+        std::cerr << "Could not opent file: " << path << NL;
         return "";
     }
 
@@ -68,6 +88,8 @@ std::string Fetcher::FindLineInFile(const std::string& path, const std::string& 
             ret = line;
         }
     }
+
+    file.close();
 
     return ret;
 }
@@ -86,6 +108,7 @@ std::string Fetcher::ExecCmd(const std::string& cmd){
         res += buffer.data();
     }
 
+    RemoveWhitespace(&res);
     return res;
 }
 
