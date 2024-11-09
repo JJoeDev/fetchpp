@@ -66,7 +66,7 @@ void Fetcher::FetchData(){
 }
 
 void Fetcher::Draw(const std::string& logo, const std::string& logoColor){
-    std::cout << logoColor << logo << ansiColor.at(DEFAULT) << NL;
+    std::cout << ansiColor.at(logoColor) << logo << ansiColor.at(DEFAULT) << NL;
     std::cout << m_infoBuf << NL;
 }
 

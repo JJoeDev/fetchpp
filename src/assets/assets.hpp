@@ -9,6 +9,9 @@ inline const char* HelpMessageStr = R"""(
     fetchpp - Yet another fetch app but in C++
     ------------------------------------------
 
+    EXAMPLE:
+    fetchpp -l void -c MAGENTA
+
     <no flag> | Print only the system info. No logo.
 
     -h | Print the current help message

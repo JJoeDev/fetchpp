@@ -35,7 +35,7 @@ int main(int argc, char** argv){
                 break;
             case 'c':
                 if(auto it{ansiColor.find(optarg)}; it != ansiColor.end()){
-                    logoColor = it->second;
+                    logoColor = optarg;
                 }
                 else{
                     std::cout << "Color not in map\n";
