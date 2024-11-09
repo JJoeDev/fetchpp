@@ -1,4 +1,5 @@
 #include "fetcher.hpp"
+#include "color.hpp"
 #include "assets.hpp"
 
 #include <algorithm>
@@ -64,8 +65,8 @@ void Fetcher::FetchData(){
     }
 }
 
-void Fetcher::Draw(const std::string& logo){
-    std::cout << ansiColor.at(Color::GREEN) << logo << ansiColor.at(Color::DEFAULT) << NL;
+void Fetcher::Draw(const std::string& logo, const std::string& logoColor){
+    std::cout << logoColor << logo << ansiColor.at(DEFAULT) << NL;
     std::cout << m_infoBuf << NL;
 }
 

@@ -3,6 +3,7 @@
 #include <getopt.h>
 #include <string>
 
+#include "color.hpp"
 #include "fetcher.hpp"
 #include "logoLoader.hpp"
 #include "assets.hpp"
@@ -10,12 +11,10 @@
 
 int main(int argc, char** argv){
     std::string logo;
+    std::string logoColor = DEFAULT;
     int option = 0;
 
-    Fetcher fetcher;
-    fetcher.FetchData();
-
-    while((option = getopt(argc, argv, ":hvl:p:")) != -1){
+    while((option = getopt(argc, argv, ":hvl:p:c:")) != -1){
         switch(option){
             case 'h':
                 std::cout << HelpMessageStr;
@@ -34,6 +33,15 @@ int main(int argc, char** argv){
             case 'p':
                 logo = LoadCustomLogo(optarg);
                 break;
+            case 'c':
+                if(auto it{ansiColor.find(optarg)}; it != ansiColor.end()){
+                    logoColor = it->second;
+                }
+                else{
+                    std::cout << "Color not in map\n";
+                    logoColor = DEFAULT;
+                }
+                break;
             case ':':
                 std::cout << "Option requires a value\n";
                 return 0;
@@ -46,7 +54,10 @@ int main(int argc, char** argv){
         }
     }
 
-    fetcher.Draw(logo);
+    Fetcher fetcher;
+    fetcher.FetchData();
+
+    fetcher.Draw(logo, logoColor);
 
     return 0;
 }

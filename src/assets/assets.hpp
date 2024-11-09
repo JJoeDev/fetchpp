@@ -17,6 +17,7 @@ inline const char* HelpMessageStr = R"""(
          Use the following syntax to choose a logo:
 
          fetchpp -l <logo_name>
+         fetchpp -l void
 
          Available Logos:
 
@@ -34,6 +35,23 @@ inline const char* HelpMessageStr = R"""(
 
          fetchpp -p <path>
          fetchpp -p ~/.config/fetchpp/MyLogo.txt
+
+    -c | Set a color for the logo to be printed with
+         Use the following syntax to set a color for the logo
+
+         fetchpp -c <color>
+         fetchpp -c GREEN
+
+         Available Colors:
+
+         -- BLACK
+         -- RED
+         -- GREEN
+         -- YELLOW
+         -- BLUE
+         -- MAGENTA
+         -- CYAN
+         -- WHITE
 
 )""";
 
