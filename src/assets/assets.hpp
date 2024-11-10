@@ -60,6 +60,7 @@ inline const char* HelpMessageStr = R"""(
 
 inline std::unordered_map<std::string, const std::string> packageCmd{
     { "void", "xbps-query -l | wc -l" },
+    { "arch", "pacman -Q | wc -l" },
 };
 
 #endif
